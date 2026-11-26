@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CROPZON | Shop Everything</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
+:root{--green:#145c3b;--dark:#103b2a;--lime:#d9f36a;--bg:#f6f8f4;--text:#18251e;--muted:#78847b}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text)}
+button,input,textarea,select{font:inherit}button{cursor:pointer}.topbar{background:var(--dark);color:white;text-align:center;padding:9px;font-size:12px;letter-spacing:.5px}
+header{background:white;padding:18px 6%;display:flex;justify-content:space-between;align-items:center;gap:20px;position:sticky;top:0;z-index:100;box-shadow:0 3px 15px #00000008}
+.logo{font-family:Outfit,sans-serif;font-size:29px;font-weight:800;color:var(--green);letter-spacing:-1px}.logo span{color:#a6c936}
+.searchbox{background:#f2f5f0;border-radius:30px;padding:12px 18px;display:flex;align-items:center;width:40%;max-width:420px}.searchbox input{border:none;outline:none;background:transparent;width:100%;padding-left:10px}
+.header-actions{display:flex;gap:10px}.icon-btn{background:#f0f5ee;border:none;padding:11px 15px;border-radius:25px;font-weight:700;color:var(--dark)}
+.hero{margin:25px auto;width:90%;max-width:1350px;min-height:390px;background:radial-gradient(circle at 85% 30%,#a9c94b55,transparent 28%),linear-gradient(115deg,#103b2a,#236a45);border-radius:25px;padding:65px 7%;display:flex;align-items:center;color:white;position:relative;overflow:hidden}
+.hero-content{max-width:580px;position:relative;z-index:2}.hero-tag{display:inline-block;background:#ffffff20;padding:9px 16px;border-radius:30px;font-size:12px;margin-bottom:22px;color:var(--lime);font-weight:700}
+.hero h1{font-family:Outfit,sans-serif;font-size:clamp(38px,6vw,68px);line-height:1.05;margin-bottom:20px;letter-spacing:-2px}.hero h1 span{color:var(--lime)}.hero p{color:#d6e7dc;line-height:1.8;margin-bottom:28px}
+.primary-btn{background:var(--lime);color:var(--dark);border:none;padding:15px 25px;border-radius:30px;font-weight:800}.hero-decoration{position:absolute;right:8%;font-size:150px;opacity:.9;transform:rotate(-12deg)}
+.features{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;width:90%;max-width:1350px;margin:35px auto}.feature{background:white;padding:20px;border-radius:15px;display:flex;gap:12px;align-items:center}.feature-icon{font-size:25px}.feature strong{font-size:13px}.feature p{font-size:11px;color:var(--muted);margin-top:4px}
+.container{width:90%;max-width:1350px;margin:55px auto}.section-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:23px;gap:10px}.section-heading h2{font-family:Outfit,sans-serif;font-size:27px}.section-heading p{color:var(--muted);font-size:13px;margin-top:5px}
+.categories{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:30px}.category-btn{border:1px solid #dfe7dc;background:white;padding:12px 19px;border-radius:30px;color:var(--dark);font-weight:600}.category-btn.active,.category-btn:hover{background:var(--green);color:white;border-color:var(--green)}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}.product{background:white;border-radius:17px;overflow:hidden;transition:.25s;border:1px solid #edf0eb}.product:hover{transform:translateY(-5px);box-shadow:0 12px 30px #00000010}
+.product-image{height:220px;background:#f0f2ed;position:relative;overflow:hidden}.product-image img{width:100%;height:100%;object-fit:cover;transition:.4s}.product:hover img{transform:scale(1.05)}
+.badge{position:absolute;top:12px;left:12px;background:var(--lime);color:var(--dark);font-size:10px;padding:7px 11px;border-radius:20px;font-weight:800}.wishlist{position:absolute;top:10px;right:10px;border:none;background:white;width:35px;height:35px;border-radius:50%;font-size:18px}
+.product-info{padding:17px}.product-category{color:var(--muted);font-size:11px;margin-bottom:7px;text-transform:uppercase}.product h3{font-size:16px;margin-bottom:10px}.price{font-size:20px;font-weight:800;color:var(--green);margin-bottom:13px}.old-price{color:#999;font-size:13px;text-decoration:line-through;font-weight:400;margin-left:6px}
+.empty{grid-column:1/-1;padding:35px;background:white;border-radius:15px;text-align:center}
+.promo{width:90%;max-width:1350px;margin:55px auto;padding:35px;border-radius:20px;background:#e9f3d9;display:flex;justify-content:space-between;align-items:center;gap:20px}.promo h2{font-family:Outfit;font-size:28px;color:var(--dark)}.promo p{margin-top:8px;color:#61715e}
+.panel{background:white;border-radius:18px;padding:27px;margin-top:25px;box-shadow:0 4px 20px #00000006}.panel h2{font-family:Outfit;margin-bottom:20px}.cart-item{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid #edf0eb;padding:16px 0}.cart-item p{color:var(--muted);font-size:13px;margin-top:5px}
+.qty{display:flex;gap:9px;align-items:center}.qty button{width:29px;height:29px;border:none;background:#eaf1e7;border-radius:50%;font-weight:bold}.remove{border:none;background:#fff0f0;color:#bc3030;padding:8px 11px;border-radius:7px}
+.total{text-align:right;font-size:23px;font-weight:800;color:var(--green);margin-top:22px}.action{background:var(--green);color:white;border:none;padding:14px 22px;border-radius:9px;font-weight:700;margin-top:18px}.action:hover{background:var(--dark)}
+input,textarea,select{width:100%;padding:14px;border:1px solid #dfe5dc;background:#fafbf9;border-radius:9px;margin:8px 0 17px;outline:none}input:focus,textarea:focus{border-color:var(--green)}label{font-size:13px;font-weight:700}
+footer{background:var(--dark);color:white;padding:45px 6%;text-align:center;margin-top:65px}footer h2{font-family:Outfit;font-size:30px;color:var(--lime);margin-bottom:10px}footer p{color:#c4d5c9;font-size:13px;line-height:2}.hidden{display:none!important}.status{padding:13px;background:#eef7e9;border-radius:9px;color:var(--green);font-size:13px;margin-bottom:18px}
+@media(max-width:900px){.products{grid-template-columns:repeat(2,1fr)}.features{grid-template-columns:repeat(2,1fr)}.hero-decoration{opacity:.2}}
+@media(max-width:600px){header{padding:14px 5%;flex-wrap:wrap}.logo{font-size:25px}.searchbox{order:3;width:100%;max-width:none}.header-actions{margin-left:auto}.icon-btn{padding:9px 11px;font-size:12px}.hero{min-height:360px;padding:42px 7%;border-radius:17px}.hero h1{font-size:42px}.hero-decoration{font-size:90px;right:5%;bottom:15px}.features{gap:9px}.feature{padding:13px}.feature strong{font-size:11px}.container{margin:40px auto}.products{gap:12px}.product-image{height:155px}.product-info{padding:12px}.product h3{font-size:13px}.price{font-size:17px}.promo{padding:24px;flex-direction:column;align-items:flex-start}.panel{padding:19px}}
+</style>
+</head>
+<body>
+<div class="topbar">✨ WELCOME TO CROPZON — YOUR EVERYDAY SHOPPING DESTINATION</div>
+<header>
+  <div class="logo">CROP<span>ZON.</span></div>
+  <div class="searchbox">🔍 <input type="search" id="search" placeholder="Search your favourite products..."></div>
+  <div class="header-actions">
+    <button class="icon-btn" onclick="showAccount()">👤 Account</button>
+    <button class="icon-btn" onclick="scrollToCart()">🛒 <span id="cartCount">0</span></button>
+  </div>
+</header>
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">THE SMART WAY TO SHOP</div>
+    <h1>Shop Smart.<br><span>Live Better.</span></h1>
+    <p>Discover exciting products, everyday essentials and amazing finds — all in one shopping destination.</p>
+    <button class="primary-btn" onclick="scrollToProducts()">Explore Products →</button>
+  </div>
+  <div class="hero-decoration">🛍️</div>
+</section>
+<section class="features">
+  <div class="feature"><div class="feature-icon">🚚</div><div><strong>Easy Delivery</strong><p>Delivery details at checkout</p></div></div>
+  <div class="feature"><div class="feature-icon">💵</div><div><strong>Cash on Delivery</strong><p>Pay when your order arrives</p></div></div>
+  <div class="feature"><div class="feature-icon">🛡️</div><div><strong>Easy Shopping</strong><p>Simple guest checkout</p></div></div>
+  <div class="feature"><div class="feature-icon">💬</div><div><strong>Customer Support</strong><p>Contact us for assistance</p></div></div>
+</section>
+<main class="container" id="shop">
+  <div class="section-heading"><div><h2>Explore Categories</h2><p>Find something you'll love.</p></div></div>
+  <div class="categories">
+    <button class="category-btn active" onclick="filterProducts('All',this)">All Products</button>
+    <button class="category-btn" onclick="filterProducts('Electronics',this)">📱 Electronics</button>
+    <button class="category-btn" onclick="filterProducts('Fashion',this)">👟 Fashion</button>
+    <button class="category-btn" onclick="filterProducts('Home',this)">🏠 Home</button>
+    <button class="category-btn" onclick="filterProducts('Beauty',this)">✨ Beauty</button>
+    <button class="category-btn" onclick="filterProducts('Toys',this)">🧸 Toys</button>
+  </div>
+  <div class="section-heading"><div><h2>🔥 Trending Finds</h2><p>Discover our featured products.</p></div></div>
+  <div class="products" id="productList"></div>
+  <section class="panel"><h2>❤️ Your Wishlist</h2><div id="wishlistItems">No favourite products yet.</div></section>
+  <section class="panel" id="cartSection"><h2>🛒 Your Shopping Cart</h2><div id="cartItems">Your cart is empty.</div><div class="total" id="total">Total: ₹0</div><button class="action" onclick="checkout()">Continue to Checkout →</button></section>
+  <section class="panel hidden" id="accountSection"><h2>👤 Your Account</h2><div class="status" id="accountStatus">Preparing your guest account...</div><p>You can shop on CROPZON without OTP or password. Your guest account is created automatically.</p></section>
+  <section class="panel hidden" id="checkoutSection">
+    <h2>📦 Checkout</h2><div class="status">Guest checkout — No OTP required.</div>
+    <label>Full Name</label><input type="text" id="customerName" placeholder="Enter your full name" maxlength="80">
+    <label>Mobile Number</label><input type="tel" id="customerPhone" placeholder="+91 9876543210" maxlength="16">
+    <label>Delivery Address</label><textarea id="address" rows="4" placeholder="House name, street, city, district and state" maxlength="500"></textarea>
+    <label>PIN Code</label><input type="text" id="pincode" placeholder="Enter 6-digit PIN code" maxlength="6" inputmode="numeric">
+    <label>Payment Method</label><select id="paymentMethod"><option value="COD">Cash on Delivery</option></select>
+    <button class="action" id="placeOrderBtn" onclick="placeOrder()">Confirm Order</button><p id="orderMessage" role="status"></p>
+  </section>
+</main>
+<section class="promo"><div><h2>Everything You Need.</h2><p>One Shopping Zone. One simple shopping experience.</p></div><button class="action" onclick="scrollToProducts()">Start Shopping →</button></section>
+<footer><h2>CROPZON.</h2><p>Everything You Need. One Shopping Zone.</p><p>Discover more. Shop smarter.</p><br><p>© 2026 CROPZON. All Rights Reserved.</p></footer>
+
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+import {getAuth,signInAnonymously,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+import {getFirestore,collection,addDoc,serverTimestamp} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
+// Keep your Firebase web-app configuration here. Restrict the API key by referrer
+// in Google Cloud when your live domain is ready, and configure Firestore rules.
+const firebaseConfig = {
+  apiKey: "AIzaSyB_LG1YnDz-cG08PrOBGMgAujbPwJR6sUA",
+  authDomain: "cropzon-54de0.firebaseapp.com",
+  databaseURL: "https://cropzon-54de0-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "cropzon-54de0",
+  storageBucket: "cropzon-54de0.firebasestorage.app",
+  messagingSenderId: "346335800134",
+  appId: "1:346335800134:web:6103492fa2d4135a46d347"
+};
+const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);
+
+const products=[
+{id:1,name:"Smart Watch",price:799,category:"Electronics",badge:"POPULAR",image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"},
+{id:2,name:"Wireless Earbuds",price:599,category:"Electronics",badge:"TRENDING",image:"https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=600"},
+{id:3,name:"Fashion Sneakers",price:999,category:"Fashion",badge:"BEST SELLER",image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"},
+{id:4,name:"Modern Home Lamp",price:499,category:"Home",badge:"POPULAR",image:"https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=600"},
+{id:5,name:"Premium Perfume",price:699,category:"Beauty",badge:"TRENDING",image:"https://images.unsplash.com/photo-1541643600914-78b084683601?w=600"},
+{id:6,name:"Cute Teddy Bear",price:399,category:"Toys",badge:"POPULAR",image:"https://images.unsplash.com/photo-1559454403-b8fb88521f11?w=600"},
+{id:25,name:"Portable Mini USB Blender",price:429,category:"Home",badge:"TRENDING",image:"images/product-25.jpg",productUrl:"https://www.meesho.com/portable-usb-rechargeable-mini-blender/p/an1ojc"},
+{id:26,name:"8 Meter RGB LED Strip Lights",price:449,category:"Home",badge:"TRENDING",image:"images/product-26.jpg",productUrl:"https://www.meesho.com/8-meter-led-strip-lights-480-led-rgb-strip-light-with-adaptor-waterproof-high-brightness-for-indooroutdoor-use-480-leds-8-m-multicolor-steady-strip-rice-lights-multicolor-led-lights-for-home-decoration-bedroomdiwali-decorationmulti/p/amcy85"},
+{id:28,name:"Electric Lint Remover",price:350,category:"Fashion",badge:"TRENDING",image:"images/product-28.jpg",productUrl:"https://www.meesho.com/electric-lint-remover/p/yj417"},
+{id:30,name:"360° Rotating Magnetic Car Phone Holder",price:250,category:"Electronics",badge:"TRENDING",image:"images/product-30.jpg",productUrl:"https://www.meesho.com/360-rotating-magnetic-car-mobile-holder-powerful-metal-phone-mount-stand-for-dashboard-air-vent-universal-magnetic-mobile-stand-compatible-with-all-smartphones-strong-grip-anti-slip-easy-installation/p/aqy14k"},
+{id:31,name:"3-in-1 Kitchen Soap Dispenser",price:249,category:"Home",badge:"TRENDING",image:"images/product-31.jpg",productUrl:"https://www.meesho.com/3-in-1-kitchen-soap-dispenser-with-sponge-holder-abs-plastic-liquid-dish-wash-pump-manual-press-soap-pump-refillable-sink-soap-dispenser-kitchen-cleaning-accessories/p/e1pesn"},
+{id:32,name:"Rechargeable Electric Scalp Massager",price:499,category:"Beauty",badge:"TRENDING",image:"images/product-32.jpg",productUrl:"https://www.meesho.com/rechargeable-electric-scalp-massager-for-hair-growth-stress-relief-waterproof-unisex-best-seller/p/98q7h3"},
+{id:34,name:"Self-Cleaning Pet Grooming Brush",price:299,category:"Home",badge:"TRENDING",image:"images/product-34.jpg",productUrl:"https://www.meesho.com/self-cleaning-pet-grooming-brush-for-dogs-cats-grey-slicker-comb-for-shedding-tangles-hair-remover-with-easy-grip/p/8q6cxc"},
+{id:35,name:"Mini Bluetooth Speaker",price:399,category:"Electronics",badge:"TRENDING",image:"images/product-35.jpg",productUrl:"https://www.meesho.com/m4-mini-bluetooth-speaker/p/bhb02g"},
+{id:37,name:"Smart LED Night Light",price:299,category:"Home",badge:"TRENDING",image:"images/product-37.jpg",productUrl:"https://www.meesho.com/motion-sensor-light/p/eo31mo"},
+{id:39,name:"Automatic Toothpaste Dispenser",price:249,category:"Home",badge:"TRENDING",image:"images/product-39.jpg",productUrl:"https://www.meesho.com/automatic-toothpaste-dispenser-with-5-toothbrush-holder-for-bathroom-wall-mount/p/a1qvr8"}
+];
+
+let cart=JSON.parse(localStorage.getItem("cropzonCart")||"[]");
+let wishlist=JSON.parse(localStorage.getItem("cropzonWishlist")||"[]");
+let currentUser=null;
+let activeCategory="All";
+let searchTerm="";
+
+let authPromise=signInAnonymously(auth).catch(error=>{
+ console.error("Guest sign-in error:",error);
+ document.getElementById("accountStatus").textContent="Guest sign-in unavailable. Please try again later.";
+});
+onAuthStateChanged(auth,user=>{
+ currentUser=user;
+ document.getElementById("accountStatus").textContent=user?"✓ Your guest account is ready. Happy shopping!":"Guest login unavailable. Please refresh and try again.";
+});
+
+function renderProducts(){
+ const area=document.getElementById("productList");
+ const list=products.filter(p=>(activeCategory==="All"||p.category===activeCategory)&&(`${p.name} ${p.category}`).toLowerCase().includes(searchTerm));
+ area.innerHTML="";
+ if(!list.length){area.innerHTML='<div class="empty">No products found.</div>';return;}
+ list.forEach(p=>{
+  const fav=wishlist.includes(p.id);
+  const card=document.createElement("article");
+  card.className="product";
+  card.innerHTML=`
+   <div class="product-image">
+    <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.src='https://placehold.co/600x450/f0f2ed/145c3b?text= CROPZON'">
+    <span class="badge">${p.badge}</span>
+    <button class="wishlist" data-wish="${p.id}" aria-label="Toggle wishlist">${fav?"❤️":"🤍"}</button>
+   </div>
+   <div class="product-info">
+    <p class="product-category">${p.category}</p><h3>${p.name}</h3>
+    <div class="price">₹${p.price}<span class="old-price">₹${p.oldPrice}</span></div>
+    <button class="add-btn" data-add="${p.id}">+ Add to Cart</button>
+    <button class="buy-btn" data-buy="${p.id}">Buy Now →</button>
+   </div>`;
+  area.appendChild(card);
+ });
+}
+document.getElementById("productList").addEventListener("click",e=>{
+ const wish=e.target.closest("[data-wish]"),add=e.target.closest("[data-add]"),buy=e.target.closest("[data-buy]");
+ if(wish)toggleWishlist(Number(wish.dataset.wish));
+ if(add)addToCart(Number(add.dataset.add));
+ if(buy){addToCart(Number(buy.dataset.buy));checkout();}
+});
+window.filterProducts=(category,button)=>{
+ activeCategory=category;
+ document.querySelectorAll(".category-btn").forEach(b=>b.classList.remove("active"));
+ button.classList.add("active");
+ renderProducts();
+};
+document.getElementById("search").addEventListener("input",e=>{
+ searchTerm=e.target.value.toLowerCase().trim();renderProducts();
+});
+function saveCart(){localStorage.setItem("cropzonCart",JSON.stringify(cart));updateCart();}
+function addToCart(id){
+ const product=products.find(p=>p.id===id);if(!product)return;
+ const existing=cart.find(p=>p.id===id);
+ if(existing)existing.quantity++;else cart.push({...product,quantity:1});
+ saveCart();
+}
+function updateCart(){
+ const area=document.getElementById("cartItems");let total=0,count=0;area.innerHTML="";
+ if(!cart.length)area.textContent="Your cart is empty.";
+ cart.forEach(item=>{
+  total+=item.price*item.quantity;count+=item.quantity;
+  const row=document.createElement("div");row.className="cart-item";
+  row.innerHTML=`<div><strong>${item.name}</strong><p>₹${item.price} each</p></div>
+  <div class="qty"><button data-change="${item.id}" data-amount="-1">−</button><strong>${item.quantity}</strong><button data-change="${item.id}" data-amount="1">+</button></div>
+  <button class="remove" data-remove="${item.id}">Remove</button>`;
+  area.appendChild(row);
+ });
+ document.getElementById("total").textContent="Total: ₹"+total;
+ document.getElementById("cartCount").textContent=count;
+}
+document.getElementById("cartItems").addEventListener("click",e=>{
+ const change=e.target.closest("[data-change]"),remove=e.target.closest("[data-remove]");
+ if(change)changeQuantity(Number(change.dataset.change),Number(change.dataset.amount));
+ if(remove)removeItem(Number(remove.dataset.remove));
+});
+function changeQuantity(id,amount){
+ const item=cart.find(p=>p.id===id);if(!item)return;
+ item.quantity+=amount;if(item.quantity<=0)cart=cart.filter(p=>p.id!==id);saveCart();
+}
+function removeItem(id){cart=cart.filter(p=>p.id!==id);saveCart();}
+function toggleWishlist(id){
+ wishlist=wishlist.includes(id)?wishlist.filter(x=>x!==id):[...wishlist,id];
+ localStorage.setItem("cropzonWishlist",JSON.stringify(wishlist));renderProducts();updateWishlist();
+}
+function updateWishlist(){
+ const area=document.getElementById("wishlistItems");area.innerHTML="";
+ const items=products.filter(p=>wishlist.includes(p.id));
+ if(!items.length){area.textContent="No favourite products yet.";return;}
+ items.forEach(p=>{
+  const row=document.createElement("div");row.className="cart-item";
+  row.innerHTML=`<strong>${p.name} — ₹${p.price}</strong><button class="remove" data-unwish="${p.id}">Remove</button>`;
+  area.appendChild(row);
+ });
+}
+document.getElementById("wishlistItems").addEventListener("click",e=>{
+ const b=e.target.closest("[data-unwish]");if(b)toggleWishlist(Number(b.dataset.unwish));
+});
+window.scrollToProducts=()=>document.getElementById("shop").scrollIntoView({behavior:"smooth"});
+window.scrollToCart=()=>document.getElementById("cartSection").scrollIntoView({behavior:"smooth"});
+window.showAccount=()=>{
+ document.getElementById("accountSection").classList.remove("hidden");
+ document.getElementById("accountSection").scrollIntoView({behavior:"smooth"});
+};
+window.checkout=async()=>{
+ if(!cart.length){alert("Your cart is empty.");return;}
+ document.getElementById("checkoutSection").classList.remove("hidden");
+ document.getElementById("checkoutSection").scrollIntoView({behavior:"smooth"});
+ await authPromise;
+};
+window.placeOrder=async()=>{
+ const message=document.getElementById("orderMessage"),button=document.getElementById("placeOrderBtn");
+ if(button.disabled)return;
+ const name=document.getElementById("customerName").value.trim();
+ const phone=document.getElementById("customerPhone").value.trim();
+ const address=document.getElementById("address").value.trim();
+ const pincode=document.getElementById("pincode").value.trim();
+ if(!name||!phone||!address||!pincode){message.textContent="Please complete all delivery details.";return;}
+ if(!/^\+?[0-9]{10,13}$/.test(phone.replace(/\s/g,""))){message.textContent="Please enter a valid mobile number.";return;}
+ if(!/^\d{6}$/.test(pincode)){message.textContent="Please enter a valid 6-digit PIN code.";return;}
+ if(!cart.length){message.textContent="Your cart is empty.";return;}
+ button.disabled=true;
+ try{
+  message.textContent="Preparing your guest account...";
+  await authPromise;if(!currentUser)throw new Error("Guest login failed. Please try again.");
+  const total=cart.reduce((sum,item)=>sum+item.price*item.quantity,0);
+  const order={userId:currentUser.uid,customerName:name,phoneNumber:phone,address,pincode,
+   items:cart.map(item=>({productId:item.id,name:item.name,price:item.price,quantity:item.quantity})),
+   total,paymentMethod:"COD",status:"Pending",createdAt:serverTimestamp()};
+  message.textContent="Saving your order...";
+  const result=await addDoc(collection(db,"orders"),order);
+  cart=[];saveCart();
+  message.textContent="🎉 Order placed successfully! Your order ID is: "+result.id;
+  ["customerName","customerPhone","address","pincode"].forEach(id=>document.getElementById(id).value="");
+ }catch(error){
+  console.error(error);message.textContent="Order failed: "+error.message;
+ }finally{button.disabled=false;}
+};
+renderProducts();updateCart();updateWishlist();
+</script>
+</body>
+</html>
