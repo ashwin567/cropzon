@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CROPZON Admin Dashboard</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f3f6f2;
+  color:#18251c;
+}
+header{
+  background:#102d20;
+  color:white;
+  padding:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+header h2{margin:0}
+.container{max-width:1100px;margin:30px auto;padding:15px}
+.card{
+  background:white;
+  padding:25px;
+  border-radius:15px;
+  box-shadow:0 3px 15px #0001;
+  margin-bottom:20px;
+}
+input,button,select{
+  padding:12px;
+  border-radius:8px;
+  border:1px solid #ddd;
+  margin:6px 0;
+}
+input{width:100%}
+button{
+  background:#b8ed65;
+  border:0;
+  font-weight:bold;
+  cursor:pointer;
+}
+.order{
+  border:1px solid #e5e5e5;
+  border-radius:12px;
+  padding:18px;
+  margin:15px 0;
+  overflow-wrap:anywhere;
+}
+.status{font-weight:bold;color:#287a38}
+.hidden{display:none}
+#message{color:#b42318}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>🌱 CROPZON ADMIN</h2>
+  <button id="logoutBtn" class="hidden">Logout</button>
+</header>
+
+<div class="container">
+
+  <div class="card" id="loginBox">
+    <h2>Admin Login</h2>
+    <p>Sign in to manage your store.</p>
+
+    <input id="email" type="email" placeholder="Admin email">
+    <input id="password" type="password" placeholder="Password">
+
+    <button id="loginBtn">Login</button>
+    <p id="message"></p>
+  </div>
+
+  <div id="dashboard" class="hidden">
+    <div class="card">
+      <h2>Welcome, Store Owner! 👋</h2>
+      <h3>Total Orders: <span id="totalOrders">0</span></h3>
+      <button id="refreshBtn">Refresh Orders</button>
+    </div>
+
+    <h2>Customer Orders</h2>
+    <div id="ordersList"></div>
+  </div>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
+} from
+"https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  collection,
+  getDocs,
+  query,
+  orderBy,
+  updateDoc
+} from
+"https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB_LG1YnDz-cG08PrOBGMgAujbPwJR6sUA",
+  authDomain: "cropzon-54de0.firebaseapp.com",
+  databaseURL: "https://cropzon-54de0-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "cropzon-54de0",
+  storageBucket: "cropzon-54de0.firebasestorage.app",
+  messagingSenderId: "346335800134",
+  appId: "1:346335800134:web:6103492fa2d4135a46d347"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const loginBox = document.getElementById("loginBox");
+const dashboard = document.getElementById("dashboard");
+const message = document.getElementById("message");
+
+let currentAdmin = null;
+
+document.getElementById("loginBtn").onclick = async () => {
+  message.textContent = "";
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+
+  if (!email || !password) {
+    message.textContent = "Enter your email and password.";
+    return;
+  }
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+  } catch (error) {
+    message.textContent = error.message;
+  }
+};
+
+onAuthStateChanged(auth, async (user) => {
+  if (!user || user.isAnonymous) {
+    currentAdmin = null;
+    loginBox.classList.remove("hidden");
+    dashboard.classList.add("hidden");
+    document.getElementById("logoutBtn").classList.add("hidden");
+    return;
+  }
+
+  try {
+    const adminRef = doc(db, "admins", user.uid);
+    const adminSnap = await getDoc(adminRef);
+
+    if (!adminSnap.exists() || adminSnap.data().active !== true) {
+      await signOut(auth);
+      message.textContent = "Access denied. Admin account not authorised.";
+      return;
+    }
+
+    currentAdmin = user;
+    loginBox.classList.add("hidden");
+    dashboard.classList.remove("hidden");
+    document.getElementById("logoutBtn").classList.remove("hidden");
+
+    await loadOrders();
+
+  } catch (error) {
+    message.textContent = "Admin verification failed: " + error.message;
+  }
+});
+
+async function loadOrders() {
+  const list = document.getElementById("ordersList");
+  list.innerHTML = "<p>Loading orders...</p>";
+
+  try {
+    const q = query(
+      collection(db, "orders"),
+      orderBy("createdAt", "desc")
+    );
+
+    const snapshot = await getDocs(q);
+
+    document.getElementById("totalOrders").textContent =
+      snapshot.size;
+
+    if (snapshot.empty) {
+      list.innerHTML = "<p>No orders found.</p>";
+      return;
+    }
+
+    list.innerHTML = "";
+
+    snapshot.forEach((orderDoc) => {
+      const order = orderDoc.data();
+      const id = orderDoc.id;
+
+      const items = Array.isArray(order.items)
+        ? order.items.map(item =>
+            `${escapeHTML(item.name || "Product")} × ${Number(item.quantity) || 0}`
+          ).join("<br>")
+        : "No item details";
+
+      const div = document.createElement("div");
+      div.className = "order";
+
+      div.innerHTML = `
+        <h3>Order #${escapeHTML(id)}</h3>
+        <p><b>Customer:</b> ${escapeHTML(order.customerName || "")}</p>
+        <p><b>Phone:</b> ${escapeHTML(order.phoneNumber || "")}</p>
+        <p><b>Address:</b> ${escapeHTML(order.address || "")}</p>
+        <p><b>PIN:</b> ${escapeHTML(order.pincode || "")}</p>
+        <p><b>Products:</b><br>${items}</p>
+        <p><b>Total:</b> ₹${Number(order.total || 0).toFixed(2)}</p>
+        <p class="status">Status: ${escapeHTML(order.status || "Pending")}</p>
+
+        <select id="status-${id}">
+          <option>Pending</option>
+          <option>Confirmed</option>
+          <option>Shipped</option>
+          <option>Delivered</option>
+          <option>Cancelled</option>
+        </select>
+
+        <button id="save-${id}">Update Status</button>
+        <p id="result-${id}"></p>
+      `;
+
+      list.appendChild(div);
+
+      document.getElementById(`status-${id}`).value =
+        ["Pending","Confirmed","Shipped","Delivered","Cancelled"]
+        .includes(order.status) ? order.status : "Pending";
+
+      document.getElementById(`save-${id}`).onclick = () =>
+        updateStatus(id);
+    });
+
+  } catch (error) {
+    list.innerHTML =
+      "<p>Could not load orders: " + escapeHTML(error.message) + "</p>";
+  }
+}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#039;"
+  })[char]);
+}
+
+async function updateStatus(id) {
+  if (!currentAdmin) return;
+
+  const status = document.getElementById(`status-${id}`).value;
+  const result = document.getElementById(`result-${id}`);
+
+  try {
+    await updateDoc(doc(db, "orders", id), { status });
+    result.textContent = "✅ Status updated!";
+    await loadOrders();
+  } catch (error) {
+    result.textContent = "❌ " + error.message;
+  }
+}
+
+document.getElementById("refreshBtn").onclick = loadOrders;
+
+document.getElementById("logoutBtn").onclick = async () => {
+  await signOut(auth);
+};
+
+</script>
+</body>
+</html>
