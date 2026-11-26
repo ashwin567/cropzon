@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ashwin Deals | Premium Shopping</title>
+<title>CROPZON | Premium Online Shopping</title>
 
 <style>
 * {
@@ -15,12 +15,12 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: #f7f8fc;
-    color: #172033;
+    background: #f6f8f7;
+    color: #17231f;
 }
 
 .topbar {
-    background: #101827;
+    background: #103b32;
     color: white;
     text-align: center;
     padding: 10px;
@@ -34,18 +34,19 @@ header {
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 15px;
-    box-shadow: 0 2px 12px #0000000a;
+    gap: 18px;
+    box-shadow: 0 3px 15px #00000008;
 }
 
 .logo {
-    font-size: 25px;
+    font-size: 29px;
     font-weight: 900;
-    color: #172033;
+    color: #103b32;
+    letter-spacing: 1px;
 }
 
 .logo span {
-    color: #f59e0b;
+    color: #e7a72f;
 }
 
 nav a {
@@ -67,32 +68,36 @@ nav a {
 .hero {
     margin: 25px 5%;
     padding: 75px 7%;
-    border-radius: 20px;
+    border-radius: 22px;
     color: white;
-    background: linear-gradient(120deg,#111827,#263b63,#b45309);
+    background: linear-gradient(120deg,#103b32,#176b56,#b28a39);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 330px;
+    min-height: 350px;
 }
 
 .hero h1 {
-    font-size: 45px;
+    font-size: 48px;
     line-height: 1.2;
     margin-bottom: 18px;
 }
 
 .hero p {
-    color: #e5e7eb;
+    color: #e5eee9;
     margin-bottom: 25px;
-    line-height: 1.6;
+    line-height: 1.7;
+}
+
+.hero-icon {
+    font-size: 120px;
 }
 
 .btn {
     display: inline-block;
-    background: #fbbf24;
-    color: #111827;
-    padding: 14px 27px;
+    background: #eab544;
+    color: #103b32;
+    padding: 15px 28px;
     border-radius: 30px;
     text-decoration: none;
     font-weight: bold;
@@ -100,12 +105,8 @@ nav a {
     cursor: pointer;
 }
 
-.hero-icon {
-    font-size: 115px;
-}
-
 section {
-    padding: 35px 6%;
+    padding: 40px 6%;
 }
 
 .heading {
@@ -113,11 +114,11 @@ section {
 }
 
 .heading h2 {
-    font-size: 27px;
+    font-size: 28px;
 }
 
 .heading p {
-    color: #777;
+    color: #888;
     margin-top: 8px;
 }
 
@@ -129,7 +130,7 @@ section {
 
 .category {
     background: white;
-    border-radius: 15px;
+    border-radius: 16px;
     padding: 25px 12px;
     text-align: center;
     cursor: pointer;
@@ -138,11 +139,11 @@ section {
 }
 
 .category:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
 }
 
-.category .icon {
-    font-size: 38px;
+.icon {
+    font-size: 42px;
     margin-bottom: 12px;
 }
 
@@ -159,14 +160,14 @@ section {
 .product {
     background: white;
     padding: 15px;
-    border-radius: 15px;
+    border-radius: 16px;
     box-shadow: 0 3px 15px #00000008;
     transition: .3s;
+    position: relative;
 }
 
 .product:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px #00000012;
 }
 
 .product img {
@@ -183,10 +184,10 @@ section {
 }
 
 .price {
-    color: #059669;
+    color: #13845f;
     font-weight: bold;
     font-size: 20px;
-    margin: 10px 0;
+    margin: 12px 0;
 }
 
 .old {
@@ -198,9 +199,9 @@ section {
 
 .product button {
     width: 100%;
-    padding: 12px;
+    padding: 13px;
     border: none;
-    background: #172033;
+    background: #103b32;
     color: white;
     border-radius: 8px;
     cursor: pointer;
@@ -208,50 +209,61 @@ section {
 }
 
 .product button:hover {
-    background: #f59e0b;
-    color: #111;
+    background: #eab544;
+    color: #103b32;
+}
+
+.wishlist {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
 }
 
 .offer {
     margin: 25px 5%;
-    background: linear-gradient(100deg,#f59e0b,#f97316);
-    padding: 40px;
-    border-radius: 18px;
+    background: linear-gradient(100deg,#103b32,#1e7058);
+    padding: 45px;
+    border-radius: 20px;
     color: white;
     text-align: center;
 }
 
 .offer h2 {
-    font-size: 30px;
-    margin-bottom: 10px;
+    font-size: 32px;
+    margin-bottom: 12px;
 }
 
 #cart {
     background: white;
-    border-radius: 15px;
+    border-radius: 16px;
     margin: 25px 5%;
 }
 
 #cartItems p {
-    padding: 10px 0;
+    padding: 12px 0;
     border-bottom: 1px solid #eee;
 }
 
 #total {
-    margin-top: 15px;
-    color: #059669;
+    margin-top: 18px;
+    color: #13845f;
 }
 
 footer {
-    background: #101827;
+    background: #103b32;
     color: white;
-    padding: 40px 6%;
+    padding: 45px 6%;
     text-align: center;
     line-height: 2;
 }
 
 footer p {
-    color: #aaa;
+    color: #c3d5cd;
     font-size: 13px;
 }
 
@@ -262,7 +274,7 @@ footer p {
 
     nav {
         text-align: center;
-        line-height: 2.5;
+        line-height: 2.8;
     }
 
     .search {
@@ -275,7 +287,7 @@ footer p {
     }
 
     .hero h1 {
-        font-size: 32px;
+        font-size: 34px;
     }
 
     .hero-icon {
@@ -301,12 +313,12 @@ footer p {
 <body>
 
 <div class="topbar">
-    ✨ Welcome to Ashwin Deals | Discover Amazing Products
+    ✨ Welcome to CROPZON | Your Ultimate Shopping Destination
 </div>
 
 <header>
 
-    <div class="logo">ASHWIN<span> DEALS.</span></div>
+    <div class="logo">CROP<span>ZON.</span></div>
 
     <nav>
         <a href="#">Home</a>
@@ -325,11 +337,11 @@ footer p {
 <div class="hero">
 
     <div>
-        <h1>Shopping Made<br>More Exciting.</h1>
+        <h1>Everything You Need.<br>One Shopping Zone.</h1>
 
         <p>
         Discover amazing products across multiple categories.
-        Find your favourites at great prices.
+        Explore your favourites and enjoy shopping with CROPZON.
         </p>
 
         <a href="#products" class="btn">Explore Products →</a>
@@ -343,7 +355,7 @@ footer p {
 
     <div class="heading">
         <h2>Explore Categories</h2>
-        <p>Everything you love, in one place.</p>
+        <p>Find everything you love in one place.</p>
     </div>
 
     <div class="categories">
@@ -375,7 +387,7 @@ footer p {
 
         <div class="category" onclick="showCategory('All')">
             <div class="icon">🔥</div>
-            <h3>All Deals</h3>
+            <h3>All Products</h3>
         </div>
 
     </div>
@@ -392,6 +404,7 @@ footer p {
     <div class="products" id="productList">
 
         <div class="product" data-name="Smart Watch" data-category="Electronics">
+            <button class="wishlist" onclick="alert('Added to wishlist!')">♡</button>
             <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500" alt="Smart Watch">
             <h3>Smart Watch</h3>
             <div class="price">₹799 <span class="old">₹1299</span></div>
@@ -399,6 +412,7 @@ footer p {
         </div>
 
         <div class="product" data-name="Wireless Earbuds" data-category="Electronics">
+            <button class="wishlist" onclick="alert('Added to wishlist!')">♡</button>
             <img src="https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=500" alt="Earbuds">
             <h3>Wireless Earbuds</h3>
             <div class="price">₹599 <span class="old">₹999</span></div>
@@ -406,6 +420,7 @@ footer p {
         </div>
 
         <div class="product" data-name="Fashion Shoes" data-category="Fashion">
+            <button class="wishlist" onclick="alert('Added to wishlist!')">♡</button>
             <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500" alt="Shoes">
             <h3>Fashion Shoes</h3>
             <div class="price">₹999 <span class="old">₹1499</span></div>
@@ -413,6 +428,7 @@ footer p {
         </div>
 
         <div class="product" data-name="Home Lamp" data-category="Home">
+            <button class="wishlist" onclick="alert('Added to wishlist!')">♡</button>
             <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=500" alt="Lamp">
             <h3>Modern Home Lamp</h3>
             <div class="price">₹499 <span class="old">₹799</span></div>
@@ -420,6 +436,7 @@ footer p {
         </div>
 
         <div class="product" data-name="Perfume" data-category="Beauty">
+            <button class="wishlist" onclick="alert('Added to wishlist!')">♡</button>
             <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=500" alt="Perfume">
             <h3>Premium Perfume</h3>
             <div class="price">₹699 <span class="old">₹999</span></div>
@@ -427,6 +444,7 @@ footer p {
         </div>
 
         <div class="product" data-name="Teddy Bear" data-category="Toys">
+            <button class="wishlist" onclick="alert('Added to wishlist!')">♡</button>
             <img src="https://images.unsplash.com/photo-1559454403-b8fb88521f11?w=500" alt="Teddy">
             <h3>Teddy Bear</h3>
             <div class="price">₹399 <span class="old">₹599</span></div>
@@ -438,8 +456,8 @@ footer p {
 </section>
 
 <div class="offer">
-    <h2>Find Your Next Favourite!</h2>
-    <p>Explore exciting products and discover great deals.</p>
+    <h2>Welcome to CROPZON!</h2>
+    <p>Everything You Need. One Shopping Zone.</p>
     <br>
     <a href="#products" class="btn">Shop Now</a>
 </div>
@@ -458,11 +476,11 @@ footer p {
 
 <footer>
 
-    <h2>ASHWIN DEALS.</h2>
+    <h2>CROPZON.</h2>
 
-    <p>Your World. Your Deals. Your Choice.</p>
+    <p>Everything You Need. One Shopping Zone.</p>
 
-    <p>© 2026 Ashwin Deals. All Rights Reserved.</p>
+    <p>© 2026 CROPZON. All Rights Reserved.</p>
 
 </footer>
 
@@ -538,4 +556,4 @@ function showCategory(category) {
 </script>
 
 </body>
-        </html>
+                </html>
