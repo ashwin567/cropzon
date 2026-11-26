@@ -4,556 +4,996 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CROPZON | Premium Online Shopping</title>
+<title>CROPZON | Online Shopping</title>
 
 <style>
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #f6f8f7;
-    color: #17231f;
-}
-
-.topbar {
-    background: #103b32;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    font-size: 13px;
+  font-family: Arial, sans-serif;
+  background: #f7f8f5;
+  color: #202820;
 }
 
 header {
-    background: white;
-    padding: 20px 6%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 18px;
-    box-shadow: 0 3px 15px #00000008;
+  background: #102d23;
+  color: white;
+  padding: 18px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .logo {
-    font-size: 29px;
-    font-weight: 900;
-    color: #103b32;
-    letter-spacing: 1px;
+  font-size: 27px;
+  font-weight: bold;
+  color: #e8c46b;
 }
 
-.logo span {
-    color: #e7a72f;
-}
-
-nav a {
-    text-decoration: none;
-    color: #333;
-    margin: 0 10px;
-    font-size: 14px;
-    font-weight: bold;
+header button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 .search {
-    padding: 12px 18px;
-    border: 1px solid #ddd;
-    border-radius: 25px;
-    outline: none;
-    width: 220px;
+  padding: 12px;
+  width: 250px;
+  max-width: 100%;
+  border-radius: 6px;
+  border: none;
 }
 
 .hero {
-    margin: 25px 5%;
-    padding: 75px 7%;
-    border-radius: 22px;
-    color: white;
-    background: linear-gradient(120deg,#103b32,#176b56,#b28a39);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 350px;
+  background: linear-gradient(120deg,#123b2d,#245b43);
+  color: white;
+  padding: 65px 7%;
+  text-align: center;
 }
 
 .hero h1 {
-    font-size: 48px;
-    line-height: 1.2;
-    margin-bottom: 18px;
+  font-size: 38px;
+  margin-bottom: 15px;
 }
 
 .hero p {
-    color: #e5eee9;
-    margin-bottom: 25px;
-    line-height: 1.7;
+  font-size: 17px;
+  margin-bottom: 20px;
 }
 
-.hero-icon {
-    font-size: 120px;
+.hero button {
+  background: #e8c46b;
+  border: none;
+  padding: 14px 25px;
+  border-radius: 7px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.btn {
-    display: inline-block;
-    background: #eab544;
-    color: #103b32;
-    padding: 15px 28px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
+.container {
+  padding: 35px 5%;
 }
 
-section {
-    padding: 40px 6%;
-}
-
-.heading {
-    margin-bottom: 25px;
-}
-
-.heading h2 {
-    font-size: 28px;
-}
-
-.heading p {
-    color: #888;
-    margin-top: 8px;
+h2 {
+  margin-bottom: 20px;
 }
 
 .categories {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(130px,1fr));
-    gap: 18px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
 }
 
-.category {
-    background: white;
-    border-radius: 16px;
-    padding: 25px 12px;
-    text-align: center;
-    cursor: pointer;
-    box-shadow: 0 3px 15px #00000008;
-    transition: .3s;
+.categories button {
+  padding: 11px 17px;
+  border: 1px solid #1c513b;
+  background: white;
+  border-radius: 20px;
+  cursor: pointer;
 }
 
-.category:hover {
-    transform: translateY(-6px);
-}
-
-.icon {
-    font-size: 42px;
-    margin-bottom: 12px;
-}
-
-.category h3 {
-    font-size: 14px;
+.categories button.active,
+.categories button:hover {
+  background: #1c513b;
+  color: white;
 }
 
 .products {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
-    gap: 22px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+  gap: 22px;
 }
 
 .product {
-    background: white;
-    padding: 15px;
-    border-radius: 16px;
-    box-shadow: 0 3px 15px #00000008;
-    transition: .3s;
-    position: relative;
-}
-
-.product:hover {
-    transform: translateY(-5px);
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px #00000012;
 }
 
 .product img {
-    width: 100%;
-    height: 190px;
-    object-fit: contain;
-    border-radius: 10px;
-    background: #f8f8f8;
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+}
+
+.product-info {
+  padding: 16px;
 }
 
 .product h3 {
-    margin: 15px 0 8px;
-    font-size: 17px;
+  margin-bottom: 10px;
 }
 
 .price {
-    color: #13845f;
-    font-weight: bold;
-    font-size: 20px;
-    margin: 12px 0;
-}
-
-.old {
-    color: #999;
-    text-decoration: line-through;
-    font-size: 13px;
-    margin-left: 7px;
+  color: #17653e;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 12px;
 }
 
 .product button {
-    width: 100%;
-    padding: 13px;
-    border: none;
-    background: #103b32;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
+  width: 100%;
+  padding: 12px;
+  background: #153e2d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 .product button:hover {
-    background: #eab544;
-    color: #103b32;
+  background: #28714c;
 }
 
-.wishlist {
-    position: absolute;
-    top: 22px;
-    right: 22px;
-    background: white;
-    border: none;
-    border-radius: 50%;
-    padding: 8px;
-    cursor: pointer;
+.panel {
+  background: white;
+  padding: 22px;
+  margin-top: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px #00000010;
 }
 
-.offer {
-    margin: 25px 5%;
-    background: linear-gradient(100deg,#103b32,#1e7058);
-    padding: 45px;
-    border-radius: 20px;
-    color: white;
-    text-align: center;
+input, textarea, select {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
 }
 
-.offer h2 {
-    font-size: 32px;
-    margin-bottom: 12px;
+.action {
+  background: #17462f;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
-#cart {
-    background: white;
-    border-radius: 16px;
-    margin: 25px 5%;
-}
-
-#cartItems p {
-    padding: 12px 0;
-    border-bottom: 1px solid #eee;
-}
-
-#total {
-    margin-top: 18px;
-    color: #13845f;
+.remove {
+  background: #b52c2c;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
 footer {
-    background: #103b32;
-    color: white;
-    padding: 45px 6%;
-    text-align: center;
-    line-height: 2;
+  background: #102d23;
+  color: white;
+  text-align: center;
+  padding: 30px;
+  margin-top: 40px;
 }
 
-footer p {
-    color: #c3d5cd;
-    font-size: 13px;
+.hidden {
+  display: none;
 }
 
-@media(max-width:650px) {
-    header {
-        justify-content: center;
-    }
-
-    nav {
-        text-align: center;
-        line-height: 2.8;
-    }
-
-    .search {
-        width: 100%;
-    }
-
-    .hero {
-        padding: 45px 25px;
-        text-align: center;
-    }
-
-    .hero h1 {
-        font-size: 34px;
-    }
-
-    .hero-icon {
-        display: none;
-    }
-
-    .products {
-        grid-template-columns: repeat(2,minmax(0,1fr));
-        gap: 12px;
-    }
-
-    .product img {
-        height: 125px;
-    }
-
-    .product {
-        padding: 10px;
-    }
+#recaptcha-container {
+  margin: 12px 0;
 }
+
+@media(max-width:600px) {
+  header {
+    justify-content: center;
+  }
+
+  .hero h1 {
+    font-size: 29px;
+  }
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="topbar">
-    ✨ Welcome to CROPZON | Your Ultimate Shopping Destination
-</div>
-
 <header>
 
-    <div class="logo">CROP<span>ZON.</span></div>
+  <div class="logo">CROPZON</div>
 
-    <nav>
-        <a href="#">Home</a>
-        <a href="#categories">Categories</a>
-        <a href="#products">Shop</a>
-        <a href="#cart">🛒 Cart (<span id="count">0</span>)</a>
-    </nav>
-
-    <input class="search"
+  <input
+    type="search"
     id="search"
+    class="search"
     placeholder="Search products..."
-    oninput="filterProducts()">
+  >
+
+  <button onclick="showLogin()">
+    👤 Account
+  </button>
+
+  <button onclick="scrollToCart()">
+    🛒 Cart (<span id="cartCount">0</span>)
+  </button>
 
 </header>
 
-<div class="hero">
 
-    <div>
-        <h1>Everything You Need.<br>One Shopping Zone.</h1>
+<section class="hero">
 
-        <p>
-        Discover amazing products across multiple categories.
-        Explore your favourites and enjoy shopping with CROPZON.
-        </p>
+  <h1>Everything You Need.</h1>
 
-        <a href="#products" class="btn">Explore Products →</a>
-    </div>
+  <h1>One Shopping Zone.</h1>
 
-    <div class="hero-icon">🛍️</div>
+  <p>
+    Discover amazing products at CROPZON.
+  </p>
 
-</div>
-
-<section id="categories">
-
-    <div class="heading">
-        <h2>Explore Categories</h2>
-        <p>Find everything you love in one place.</p>
-    </div>
-
-    <div class="categories">
-
-        <div class="category" onclick="showCategory('Electronics')">
-            <div class="icon">📱</div>
-            <h3>Electronics</h3>
-        </div>
-
-        <div class="category" onclick="showCategory('Fashion')">
-            <div class="icon">👕</div>
-            <h3>Fashion</h3>
-        </div>
-
-        <div class="category" onclick="showCategory('Home')">
-            <div class="icon">🏠</div>
-            <h3>Home & Kitchen</h3>
-        </div>
-
-        <div class="category" onclick="showCategory('Beauty')">
-            <div class="icon">💄</div>
-            <h3>Beauty</h3>
-        </div>
-
-        <div class="category" onclick="showCategory('Toys')">
-            <div class="icon">🧸</div>
-            <h3>Toys</h3>
-        </div>
-
-        <div class="category" onclick="showCategory('All')">
-            <div class="icon">🔥</div>
-            <h3>All Products</h3>
-        </div>
-
-    </div>
+  <button onclick="scrollToProducts()">
+    Shop Now
+  </button>
 
 </section>
 
-<section id="products">
 
-    <div class="heading">
-        <h2>Trending Products 🔥</h2>
-        <p>Explore our featured collection.</p>
+<main class="container">
+
+  <h2>Shop by Category</h2>
+
+  <div class="categories">
+
+    <button class="active" onclick="filterProducts('All',this)">
+      All Products
+    </button>
+
+    <button onclick="filterProducts('Electronics',this)">
+      Electronics
+    </button>
+
+    <button onclick="filterProducts('Fashion',this)">
+      Fashion
+    </button>
+
+    <button onclick="filterProducts('Home',this)">
+      Home & Kitchen
+    </button>
+
+    <button onclick="filterProducts('Beauty',this)">
+      Beauty
+    </button>
+
+    <button onclick="filterProducts('Toys',this)">
+      Toys
+    </button>
+
+  </div>
+
+
+  <h2 id="productsHeading">Featured Products</h2>
+
+  <div class="products" id="productList"></div>
+
+
+  <section class="panel" id="cartSection">
+
+    <h2>Your Shopping Cart</h2>
+
+    <div id="cartItems">
+      Your cart is empty.
     </div>
 
-    <div class="products" id="productList">
-
-        <div class="product" data-name="Smart Watch" data-category="Electronics">
-            <button class="wishlist" onclick="alert('Added to wishlist!')">♡</button>
-            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500" alt="Smart Watch">
-            <h3>Smart Watch</h3>
-            <div class="price">₹799 <span class="old">₹1299</span></div>
-            <button onclick="addCart('Smart Watch',799)">Add to Cart</button>
-        </div>
-
-        <div class="product" data-name="Wireless Earbuds" data-category="Electronics">
-            <button class="wishlist" onclick="alert('Added to wishlist!')">♡</button>
-            <img src="https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=500" alt="Earbuds">
-            <h3>Wireless Earbuds</h3>
-            <div class="price">₹599 <span class="old">₹999</span></div>
-            <button onclick="addCart('Wireless Earbuds',599)">Add to Cart</button>
-        </div>
-
-        <div class="product" data-name="Fashion Shoes" data-category="Fashion">
-            <button class="wishlist" onclick="alert('Added to wishlist!')">♡</button>
-            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500" alt="Shoes">
-            <h3>Fashion Shoes</h3>
-            <div class="price">₹999 <span class="old">₹1499</span></div>
-            <button onclick="addCart('Fashion Shoes',999)">Add to Cart</button>
-        </div>
-
-        <div class="product" data-name="Home Lamp" data-category="Home">
-            <button class="wishlist" onclick="alert('Added to wishlist!')">♡</button>
-            <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=500" alt="Lamp">
-            <h3>Modern Home Lamp</h3>
-            <div class="price">₹499 <span class="old">₹799</span></div>
-            <button onclick="addCart('Modern Home Lamp',499)">Add to Cart</button>
-        </div>
-
-        <div class="product" data-name="Perfume" data-category="Beauty">
-            <button class="wishlist" onclick="alert('Added to wishlist!')">♡</button>
-            <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=500" alt="Perfume">
-            <h3>Premium Perfume</h3>
-            <div class="price">₹699 <span class="old">₹999</span></div>
-            <button onclick="addCart('Premium Perfume',699)">Add to Cart</button>
-        </div>
-
-        <div class="product" data-name="Teddy Bear" data-category="Toys">
-            <button class="wishlist" onclick="alert('Added to wishlist!')">♡</button>
-            <img src="https://images.unsplash.com/photo-1559454403-b8fb88521f11?w=500" alt="Teddy">
-            <h3>Teddy Bear</h3>
-            <div class="price">₹399 <span class="old">₹599</span></div>
-            <button onclick="addCart('Teddy Bear',399)">Add to Cart</button>
-        </div>
-
-    </div>
-
-</section>
-
-<div class="offer">
-    <h2>Welcome to CROPZON!</h2>
-    <p>Everything You Need. One Shopping Zone.</p>
-    <br>
-    <a href="#products" class="btn">Shop Now</a>
-</div>
-
-<section id="cart">
-
-    <h2>Your Shopping Cart 🛒</h2>
+    <h3 id="total">
+      Total: ₹0
+    </h3>
 
     <br>
 
-    <div id="cartItems">Your cart is empty.</div>
+    <button class="action" onclick="checkout()">
+      Proceed to Checkout
+    </button>
 
-    <h3 id="total">Total: ₹0</h3>
+  </section>
 
-</section>
+
+  <section class="panel hidden" id="loginSection">
+
+    <h2>Customer Login</h2>
+
+    <p>Login using your mobile number.</p>
+
+    <label>Mobile Number</label>
+
+    <input
+      type="tel"
+      id="phone"
+      value="+91"
+      placeholder="+919876543210"
+    >
+
+    <div id="recaptcha-container"></div>
+
+    <button class="action" onclick="sendOTP()">
+      Send OTP
+    </button>
+
+    <div id="otpSection" class="hidden">
+
+      <label>Enter OTP</label>
+
+      <input
+        type="text"
+        id="otp"
+        placeholder="Enter 6 digit OTP"
+        maxlength="6"
+      >
+
+      <button class="action" onclick="verifyOTP()">
+        Verify OTP
+      </button>
+
+    </div>
+
+    <p id="loginMessage"></p>
+
+  </section>
+
+
+  <section class="panel hidden" id="checkoutSection">
+
+    <h2>Checkout</h2>
+
+    <p id="customerStatus"></p>
+
+    <label>Full Name</label>
+
+    <input
+      type="text"
+      id="customerName"
+      placeholder="Your name"
+    >
+
+    <label>Delivery Address</label>
+
+    <textarea
+      id="address"
+      placeholder="Enter complete delivery address"
+      rows="4"
+    ></textarea>
+
+    <label>Payment Method</label>
+
+    <select id="paymentMethod">
+
+      <option value="COD">
+        Cash on Delivery
+      </option>
+
+    </select>
+
+    <button class="action" onclick="placeOrder()">
+      Place Order
+    </button>
+
+    <p id="orderMessage"></p>
+
+  </section>
+
+</main>
+
 
 <footer>
 
-    <h2>CROPZON.</h2>
+  <h2>CROPZON</h2>
 
-    <p>Everything You Need. One Shopping Zone.</p>
+  <p>Everything You Need. One Shopping Zone.</p>
 
-    <p>© 2026 CROPZON. All Rights Reserved.</p>
+  <br>
+
+  <p>© 2026 CROPZON. All Rights Reserved.</p>
 
 </footer>
 
-<script>
 
-let cart = [];
+<script type="module">
 
-function addCart(name,price) {
-    cart.push({name,price});
-    updateCart();
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+
+import {
+  getAuth,
+  RecaptchaVerifier,
+  signInWithPhoneNumber,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
+
+// FIREBASE CONFIGURATION
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyB_LG1YnDz-cG08PrOBGMgAujbPwJR6sUA",
+
+  authDomain: "cropzon-54de0.firebaseapp.com",
+
+  databaseURL: "https://cropzon-54de0-default-rtdb.asia-southeast1.firebasedatabase.app",
+
+  projectId: "cropzon-54de0",
+
+  storageBucket: "cropzon-54de0.firebasestorage.app",
+
+  messagingSenderId: "346335800134",
+
+  appId: "1:346335800134:web:6103492fa2d4135a46d347"
+
+};
+
+
+// INITIALIZE FIREBASE
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+
+// PRODUCTS
+
+const products = [
+
+{
+ id:1,
+ name:"Smart Watch",
+ price:799,
+ category:"Electronics",
+ image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"
+},
+
+{
+ id:2,
+ name:"Wireless Earbuds",
+ price:599,
+ category:"Electronics",
+ image:"https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=600"
+},
+
+{
+ id:3,
+ name:"Fashion Shoes",
+ price:999,
+ category:"Fashion",
+ image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"
+},
+
+{
+ id:4,
+ name:"Modern Home Lamp",
+ price:499,
+ category:"Home",
+ image:"https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=600"
+},
+
+{
+ id:5,
+ name:"Premium Perfume",
+ price:699,
+ category:"Beauty",
+ image:"https://images.unsplash.com/photo-1541643600914-78b084683601?w=600"
+},
+
+{
+ id:6,
+ name:"Teddy Bear",
+ price:399,
+ category:"Toys",
+ image:"https://images.unsplash.com/photo-1559454403-b8fb88521f11?w=600"
 }
+
+];
+
+
+// CART
+
+let cart = JSON.parse(localStorage.getItem("cropzonCart") || "[]");
+
+let currentUser = null;
+
+let confirmationResult = null;
+
+let recaptchaVerifier = null;
+
+
+// DISPLAY PRODUCTS
+
+function displayProducts(list) {
+
+ const area = document.getElementById("productList");
+
+ area.innerHTML = "";
+
+ if(list.length === 0) {
+   area.innerHTML = "<p>No products found.</p>";
+   return;
+ }
+
+ list.forEach(product => {
+
+   area.innerHTML += `
+
+     <div class="product">
+
+       <img src="${product.image}" alt="${product.name}">
+
+       <div class="product-info">
+
+         <h3>${product.name}</h3>
+
+         <p>${product.category}</p>
+
+         <div class="price">₹${product.price}</div>
+
+         <button onclick="addToCart(${product.id})">
+           Add to Cart
+         </button>
+
+       </div>
+
+     </div>
+
+   `;
+
+ });
+
+}
+
+displayProducts(products);
+
+
+// FILTER PRODUCTS
+
+window.filterProducts = function(category,button) {
+
+ document.querySelectorAll(".categories button")
+   .forEach(btn => btn.classList.remove("active"));
+
+ button.classList.add("active");
+
+ if(category === "All") {
+   displayProducts(products);
+ } else {
+   displayProducts(
+     products.filter(p => p.category === category)
+   );
+ }
+
+};
+
+
+// SEARCH
+
+document.getElementById("search").addEventListener("input",function() {
+
+ const value = this.value.toLowerCase();
+
+ const result = products.filter(product =>
+   product.name.toLowerCase().includes(value) ||
+   product.category.toLowerCase().includes(value)
+ );
+
+ displayProducts(result);
+
+});
+
+
+// ADD TO CART
+
+window.addToCart = function(id) {
+
+ const product = products.find(p => p.id === id);
+
+ const existing = cart.find(p => p.id === id);
+
+ if(existing) {
+   existing.quantity++;
+ } else {
+   cart.push({...product,quantity:1});
+ }
+
+ saveCart();
+
+};
+
+
+// SAVE CART
+
+function saveCart() {
+
+ localStorage.setItem("cropzonCart",JSON.stringify(cart));
+
+ updateCart();
+
+}
+
+
+// UPDATE CART
 
 function updateCart() {
 
-    document.getElementById("count").innerText = cart.length;
+ const area = document.getElementById("cartItems");
 
-    let html = "";
-    let total = 0;
+ let total = 0;
 
-    cart.forEach((item,index) => {
+ let count = 0;
 
-        html += `<p>${item.name} - ₹${item.price}
-        <button onclick="removeItem(${index})">Remove</button></p>`;
+ area.innerHTML = "";
 
-        total += item.price;
+ if(cart.length === 0) {
 
-    });
+   area.innerHTML = "Your cart is empty.";
 
-    document.getElementById("cartItems").innerHTML =
-    html || "Your cart is empty.";
+ }
 
-    document.getElementById("total").innerText =
-    "Total: ₹" + total;
+ cart.forEach(item => {
 
-}
+   total += item.price * item.quantity;
 
-function removeItem(index) {
-    cart.splice(index,1);
-    updateCart();
-}
+   count += item.quantity;
 
-function filterProducts() {
+   area.innerHTML += `
 
-    let query = document.getElementById("search").value.toLowerCase();
+     <div style="padding:12px;border-bottom:1px solid #ddd">
 
-    document.querySelectorAll(".product").forEach(product => {
+       <b>${item.name}</b>
 
-        product.style.display =
-        product.dataset.name.toLowerCase().includes(query)
-        ? "block" : "none";
+       <p>₹${item.price} × ${item.quantity}</p>
 
-    });
+       <button class="remove"
+         onclick="removeItem(${item.id})">
+         Remove
+       </button>
 
-}
+     </div>
 
-function showCategory(category) {
+   `;
 
-    document.querySelectorAll(".product").forEach(product => {
+ });
 
-        product.style.display =
-        category === "All" ||
-        product.dataset.category === category
-        ? "block" : "none";
+ document.getElementById("total").innerText =
+   "Total: ₹" + total;
 
-    });
-
-    document.getElementById("products").scrollIntoView({
-        behavior:"smooth"
-    });
+ document.getElementById("cartCount").innerText = count;
 
 }
+
+updateCart();
+
+
+// REMOVE ITEM
+
+window.removeItem = function(id) {
+
+ cart = cart.filter(item => item.id !== id);
+
+ saveCart();
+
+};
+
+
+// NAVIGATION
+
+window.scrollToProducts = function() {
+
+ document.getElementById("productsHeading")
+   .scrollIntoView({behavior:"smooth"});
+
+};
+
+window.scrollToCart = function() {
+
+ document.getElementById("cartSection")
+   .scrollIntoView({behavior:"smooth"});
+
+};
+
+window.showLogin = function() {
+
+ document.getElementById("loginSection")
+   .classList.remove("hidden");
+
+ document.getElementById("loginSection")
+   .scrollIntoView({behavior:"smooth"});
+
+};
+
+
+// AUTHENTICATION STATE
+
+onAuthStateChanged(auth,user => {
+
+ currentUser = user;
+
+ if(user) {
+
+   document.getElementById("customerStatus").innerText =
+     "Logged in: " + user.phoneNumber;
+
+   document.getElementById("loginMessage").innerText =
+     "You are logged in successfully.";
+
+ } else {
+
+   document.getElementById("customerStatus").innerText =
+     "Please log in to place an order.";
+
+ }
+
+});
+
+
+// SEND OTP
+
+window.sendOTP = async function() {
+
+ const phone = document.getElementById("phone").value.trim();
+
+ const message = document.getElementById("loginMessage");
+
+ if(!/^\+[1-9]\d{7,14}$/.test(phone)) {
+
+   message.innerText =
+     "Enter your full number with country code, e.g. +919876543210";
+
+   return;
+
+ }
+
+ try {
+
+   message.innerText = "Preparing verification...";
+
+   if(recaptchaVerifier) {
+     recaptchaVerifier.clear();
+   }
+
+   recaptchaVerifier = new RecaptchaVerifier(
+     auth,
+     "recaptcha-container",
+     {size:"normal"}
+   );
+
+   await recaptchaVerifier.render();
+
+   confirmationResult = await signInWithPhoneNumber(
+     auth,
+     phone,
+     recaptchaVerifier
+   );
+
+   document.getElementById("otpSection")
+     .classList.remove("hidden");
+
+   message.innerText = "OTP sent successfully.";
+
+ } catch(error) {
+
+   console.error(error);
+
+   message.innerText =
+     "OTP error: " + error.message;
+
+   if(recaptchaVerifier) {
+     recaptchaVerifier.clear();
+     recaptchaVerifier = null;
+   }
+
+ }
+
+};
+
+
+// VERIFY OTP
+
+window.verifyOTP = async function() {
+
+ const code = document.getElementById("otp").value.trim();
+
+ const message = document.getElementById("loginMessage");
+
+ if(!confirmationResult || !/^\d{6}$/.test(code)) {
+
+   message.innerText = "Enter the six-digit OTP.";
+
+   return;
+
+ }
+
+ try {
+
+   await confirmationResult.confirm(code);
+
+   message.innerText = "Login successful!";
+
+   document.getElementById("checkoutSection")
+     .classList.remove("hidden");
+
+   document.getElementById("checkoutSection")
+     .scrollIntoView({behavior:"smooth"});
+
+ } catch(error) {
+
+   console.error(error);
+
+   message.innerText =
+     "Verification failed: " + error.message;
+
+ }
+
+};
+
+
+// CHECKOUT
+
+window.checkout = function() {
+
+ if(cart.length === 0) {
+
+   alert("Your cart is empty.");
+
+   return;
+
+ }
+
+ if(!currentUser) {
+
+   showLogin();
+
+   alert("Please log in using your mobile number first.");
+
+   return;
+
+ }
+
+ document.getElementById("checkoutSection")
+   .classList.remove("hidden");
+
+ document.getElementById("checkoutSection")
+   .scrollIntoView({behavior:"smooth"});
+
+};
+
+
+// PLACE ORDER
+
+window.placeOrder = async function() {
+
+ const message = document.getElementById("orderMessage");
+
+ if(!currentUser) {
+
+   message.innerText = "Please log in first.";
+
+   return;
+
+ }
+
+ if(cart.length === 0) {
+
+   message.innerText = "Your cart is empty.";
+
+   return;
+
+ }
+
+ const name = document.getElementById("customerName").value.trim();
+
+ const address = document.getElementById("address").value.trim();
+
+ if(!name || !address) {
+
+   message.innerText = "Please complete your name and address.";
+
+   return;
+
+ }
+
+ const total = cart.reduce(
+   (sum,item) => sum + item.price * item.quantity,
+   0
+ );
+
+ try {
+
+   message.innerText = "Placing your order...";
+
+   const order = {
+
+     userId: currentUser.uid,
+
+     phoneNumber: currentUser.phoneNumber,
+
+     customerName: name,
+
+     address: address,
+
+     items: cart.map(item => ({
+
+       productId: item.id,
+
+       name: item.name,
+
+       price: item.price,
+
+       quantity: item.quantity
+
+     })),
+
+     total: total,
+
+     paymentMethod: "COD",
+
+     status: "Pending",
+
+     createdAt: serverTimestamp()
+
+   };
+
+   const result = await addDoc(
+     collection(db,"orders"),
+     order
+   );
+
+   message.innerText =
+     "Order placed successfully! Order ID: " + result.id;
+
+   cart = [];
+
+   saveCart();
+
+ } catch(error) {
+
+   console.error(error);
+
+   message.innerText =
+     "Order failed: " + error.message;
+
+ }
+
+};
 
 </script>
 
 </body>
-                </html>
+    </html>
